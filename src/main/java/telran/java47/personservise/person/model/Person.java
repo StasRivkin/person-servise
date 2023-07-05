@@ -1,10 +1,10 @@
 package telran.java47.personservise.person.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Getter
 @EqualsAndHashCode(of = "id")
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Person implements Serializable {
     private static final long serialVersionUID = 717580607558946945L;
     @Id
@@ -21,6 +22,10 @@ public class Person implements Serializable {
     String name;
     LocalDate birthDate;
     @Setter
-   // @Embedded
+    // @Embedded
     Address address;
+    @JsonProperty("type")
+    public String getType() {
+        return this.getClass().getSimpleName().toLowerCase();
+    }
 }

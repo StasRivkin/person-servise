@@ -16,4 +16,6 @@ public interface PersonService {
     List<CityPopulationDto> findCitiesByPopulation();
     PersonDto updateAddress(Integer id, Address newAddress);
     PersonDto deletePerson(Integer id);
+    List<PersonDto> findChildren();
+    List<PersonDto> findEmployeeBySalary(int salaryFrom, int salaryTo);
 }

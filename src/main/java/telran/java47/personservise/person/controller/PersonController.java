@@ -30,6 +30,15 @@ public class PersonController {
         return personService.findPersonsByCity(city);
     }
 
+    @GetMapping("/children")
+    public List<PersonDto> findChildren() {
+        return personService.findChildren();
+    }
+
+    @GetMapping("/salary/{salaryFrom}/{salaryTo}")
+    public List<PersonDto> findEmployeeBySalary(@PathVariable int salaryFrom, @PathVariable int salaryTo) {
+        return personService.findEmployeeBySalary(salaryFrom, salaryTo);
+    }
 
     @PutMapping("/{id}/name/{newName}")
     public PersonDto updatePersonsName(@PathVariable Integer id, @PathVariable String newName) {
@@ -60,5 +69,4 @@ public class PersonController {
     public PersonDto deletePerson(@PathVariable Integer id) {
         return personService.deletePerson(id);
     }
-
 }
